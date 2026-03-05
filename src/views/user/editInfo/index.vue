@@ -68,15 +68,17 @@
         {{ $t('edit.change') }}
       </a-button>
 
-      <a-button
-        type="primary"
-        size="large"
-        class="float-right mr-10"
-        :disabled="!userInfo.roles.includes('admin')"
-        @click="openPermissionModel"
-      >
-        {{ $t('edit.permission') }}
-      </a-button>
+      <a-tooltip content="只有admin才能添加权限">
+        <a-button
+          type="primary"
+          size="large"
+          class="float-right mr-10"
+          :disabled="!userInfo.roles.includes('admin')"
+          @click="openPermissionModel"
+        >
+          {{ $t('edit.permission') }}
+        </a-button>
+      </a-tooltip>
     </div>
   </div>
   <a-modal
