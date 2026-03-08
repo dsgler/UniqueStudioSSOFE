@@ -54,7 +54,7 @@
 
 <script setup lang="ts">
 import { inject, ref, watch } from 'vue';
-import { getAllUsers, getAllUsersItemT } from '@/api/getAllUsers';
+import { getAllUsers, userInfoT } from '@/api/getAllUsers';
 import { PermissionRequest } from '@/constants/httpMsg/register/PermissionMsg';
 import { Message } from '@arco-design/web-vue';
 import i18n from '@/locale';
@@ -68,14 +68,14 @@ const editStore = useEditStore();
 
 const isPermissionOpen = inject('isPermissionOpen', () => ref(false), true);
 
-const users = ref<getAllUsersItemT[]>([]);
+const users = ref<userInfoT[]>([]);
 const isUserSelected = ref<boolean[]>([]);
 const setRoleType = ref('');
 
 const selectedGroup = ref('');
 watch(selectedGroup, async () => {
   if (selectedGroup.value && users.value.length === 0) {
-    users.value = (await getAllUsers(selectedGroup.value)).data;
+    users.value = await getAllUsers(selectedGroup.value);
     isUserSelected.value = users.value.map(() => false);
   }
 });
