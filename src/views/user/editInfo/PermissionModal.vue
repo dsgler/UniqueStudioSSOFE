@@ -2,7 +2,7 @@
   <a-modal
     v-model:visible="isPermissionOpen"
     :hide-cancel="true"
-    :modal-style="{ maxHeight: '700px', width: isSmall ? '95vw' : '' }"
+    :modal-style="{ width: isSmall ? '95vw' : '', margin: '12px 0px' }"
   >
     <template #title>
       {{ $t('edit.permission') }}
