@@ -152,7 +152,12 @@ const handleSubmit = () => {
 };
 
 const handleManualSubmit = () => {
-  editStore.handlePermission(manualData).then(() => {
+  editStore.handlePermission(manualData).then((res) => {
+    if (res !== null) {
+      Message.success(`${i18n.global.t('edit.success')}:${res.message}`);
+    } else {
+      Message.error(`请求错误:${manualData.phone}`);
+    }
     isPermissionOpen.value = false;
   });
 };
